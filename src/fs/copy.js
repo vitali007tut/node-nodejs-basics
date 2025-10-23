@@ -1,9 +1,13 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 const copy = async () => {
-    const sourceDir = path.join(process.cwd(), 'files');
-    const targetDir = path.join(process.cwd(), 'files_copy');
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    const sourceDir = path.join(__dirname, 'files');
+    const targetDir = path.join(__dirname, 'files_copy');
 
     try {
         await fs.access(sourceDir);
